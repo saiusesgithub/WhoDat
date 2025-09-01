@@ -31,21 +31,21 @@ class MyApp extends StatelessWidget {
               pageAnimationType: FadeAnimationTransition(),
               page: HomeScreen(),
             );
-          case 'classic':
-            return PageAnimationTransition(
-              pageAnimationType: FadeAnimationTransition(),
-              page: ClassicScreen(),
-            );
+          // case 'classic':
+          //   return PageAnimationTransition(
+          //     pageAnimationType: FadeAnimationTransition(),
+          //     page: ClassicScreen(category: '',),
+          //   );
           case 'reverse':
             return PageAnimationTransition(
               pageAnimationType: FadeAnimationTransition(),
               page: Container(),
             );
-          case 'result':
-            return PageAnimationTransition(
-              pageAnimationType: FadeAnimationTransition(),
-              page: ResultScreen(value: 'value'),
-            );
+          // case 'result':
+          //   return PageAnimationTransition(
+          //     pageAnimationType: FadeAnimationTransition(),
+          //     page: ResultScreen(value: 'value'),
+          //   );
           default:
             return null;
         }

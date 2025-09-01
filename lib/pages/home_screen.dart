@@ -13,6 +13,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final SoLoud _soloud = SoLoud.instance;
+  List<String> categories = ['Characters', 'Objects', 'Movies'];
+  int selectedCategory = 0;
   @override
   void initState() {
     super.initState();
@@ -35,7 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   spacing: 25,
-                  children: [classicModeButton(), reverseModeButton()],
+                  children: [
+                    categorySelector(),
+                    classicModeButton(),
+                    reverseModeButton(),
+                  ],
                 ),
               ],
             ),
@@ -76,7 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
         Navigator.of(context).push(
           TransitionPageRoute(
-            builder: (context) => const ClassicScreen(),
+            builder: (context) =>
+                ClassicScreen(category: categories[selectedCategory]),
             transitionAnimation: CrtShutoffTransition(),
           ),
         );
@@ -129,5 +136,41 @@ class _HomeScreenState extends State<HomeScreen> {
     final source = await _soloud.loadAsset('assets/sound/startup_sound.mp3');
     final handle = await _soloud.play(source);
     _soloud.setVolume(handle, 1.0);
+  }
+
+  Widget categorySelector() {
+    return SegmentedButton(
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.all(
+          Color.fromRGBO(5, 39, 51, 1.0),
+        ),
+        foregroundColor: WidgetStateProperty.all(
+          Color.fromRGBO(39, 246, 163, 1.0),
+        ),
+      ),
+      segments: const <ButtonSegment<int>>[
+        ButtonSegment<int>(
+          value: 0,
+          label: Text('Characters'),
+          icon: Icon(Icons.person),
+        ),
+        ButtonSegment<int>(
+          value: 1,
+          label: Text('Objects'),
+          icon: Icon(Icons.data_object),
+        ),
+        ButtonSegment<int>(
+          value: 2,
+          label: Text('Movies'),
+          icon: Icon(Icons.movie),
+        ),
+      ],
+      selected: <int>{selectedCategory},
+      onSelectionChanged: (Set<int> newSelection) {
+        setState(() {
+          selectedCategory = newSelection.first;
+        });
+      },
+    );
   }
 }

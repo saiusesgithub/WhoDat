@@ -8,7 +8,8 @@ import 'package:flutter_soloud/flutter_soloud.dart';
 import 'package:animated_transitions/animated_transitions.dart';
 
 class ClassicScreen extends StatefulWidget {
-  const ClassicScreen({super.key});
+  String category;
+  ClassicScreen({super.key, required this.category});
 
   @override
   State<ClassicScreen> createState() => _ClassicScreenState();
@@ -22,13 +23,13 @@ class _ClassicScreenState extends State<ClassicScreen> {
   String? question;
   String? finalGuess;
   String status = 'ongoing';
-  final String category = 'Movie Actors';
+  late final String category = widget.category;
   final List<Map<String, String>> history = [];
   @override
   void initState() {
     super.initState();
     api = GeminiApi();
-    getQuestion();
+    getQuestion(category);
   }
 
   @override
@@ -202,7 +203,7 @@ class _ClassicScreenState extends State<ClassicScreen> {
     );
   }
 
-  Future<void> getQuestion() async {
+  Future<void> getQuestion(String category) async {
     setState(() {
       loading = true;
     });
@@ -227,7 +228,8 @@ class _ClassicScreenState extends State<ClassicScreen> {
 
         Navigator.of(context).push(
           TransitionPageRoute(
-            builder: (context) => ResultScreen(value: finalGuess!),
+            builder: (context) =>
+                ResultScreen(value: finalGuess!, category: category),
             transitionAnimation: CrtShutoffTransition(),
           ),
         );
@@ -248,7 +250,7 @@ class _ClassicScreenState extends State<ClassicScreen> {
     if (status == 'final') return;
     // record the last question + answer
     history.add({'q': question ?? 'Unknown', 'a': a});
-    await getQuestion();
+    await getQuestion(category);
   }
 
   void buttonSound() async {

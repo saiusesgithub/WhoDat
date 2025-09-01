@@ -1,11 +1,13 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
 
 class ResultScreen extends StatefulWidget {
   final String value;
-  const ResultScreen({super.key, required this.value});
+  final String category;
+  const ResultScreen({super.key, required this.value, required this.category});
 
   @override
   State<ResultScreen> createState() => _ResultScreenState();
@@ -54,7 +56,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       Column(
                         children: [
                           Text(
-                            'Your Character Is : ',
+                            'The ${widget.category} Is : ',
                             style: const TextStyle(
                               color: Color.fromRGBO(39, 246, 163, 1.0),
                             ),
