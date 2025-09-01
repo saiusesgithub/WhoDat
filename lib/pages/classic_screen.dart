@@ -199,11 +199,15 @@ class _ClassicScreenState extends State<ClassicScreen> {
           !_navigated &&
           mounted) {
         _navigated = true;
-        MaterialPageRoute(
-          builder: (context) => ResultScreen(value: finalGuess!),
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ResultScreen(value: finalGuess!),
+          ),
         );
       }
     } catch (e) {
+      print(e);
       // fallback
       setState(() {
         question = 'Is your character alive?';

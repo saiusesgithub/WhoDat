@@ -20,8 +20,8 @@ class _ResultScreenState extends State<ResultScreen> {
         children: [
           Center(
             child: Container(
-              width: 300,
-              height: 150,
+              width: 500,
+              height: 200,
               padding: const EdgeInsets.all(18),
               decoration: BoxDecoration(
                 color: const Color(0xFF151820),
@@ -54,8 +54,8 @@ class _ResultScreenState extends State<ResultScreen> {
             ),
           ),
           Column(
-            children: [notCorrectReportButton(), returnToHomeButton()],
             spacing: 10,
+            children: [notCorrectReportButton(), returnToHomeButton()],
           ),
         ],
       ),
@@ -65,7 +65,7 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget returnToHomeButton() {
     return ElevatedButton(
       onPressed: () {
-        Navigator.pushNamed(context, 'homescreen');
+        Navigator.pushNamed(context, 'homepage');
       },
       style: ElevatedButton.styleFrom(
         minimumSize: Size(325, 60),

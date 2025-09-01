@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 
 class GeminiApi {
   final String model = 'gemini-1.5-flash';
-  final String apiKey = 'AIzaSyCfx_meeilsG8h5onMqNaR7uxa2Zaramo4';
+  final String apiKey = 'AIzaSyAeLTMTOMGLLMY0sH_yyIegEk-S8oW-M0w';
   final Dio _dio = Dio(
     BaseOptions(
       baseUrl: 'https://generativelanguage.googleapis.com/v1beta',
