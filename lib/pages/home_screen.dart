@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:typewritertext/typewritertext.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget subtitle() {
-    return Text(
+    return TypeWriter.text(
       'Outsmart the AI… or be outguessed.',
       textAlign: TextAlign.center,
       style: TextStyle(
@@ -54,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Color.fromRGBO(39, 246, 163, 1.0),
         fontSize: 10,
       ),
+      duration: const Duration(milliseconds: 150),
     );
   }
 

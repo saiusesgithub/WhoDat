@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:confetti/confetti.dart';
 
 class ResultScreen extends StatefulWidget {
   final String value;
@@ -9,6 +12,17 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreenState extends State<ResultScreen> {
+  late ConfettiController _confettiController;
+
+  @override
+  void initState() {
+    super.initState();
+    _confettiController = ConfettiController(
+      duration: const Duration(seconds: 3),
+    );
+    _confettiController.play();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,24 +48,31 @@ class _ResultScreenState extends State<ResultScreen> {
                   ),
                   boxShadow: [BoxShadow(blurRadius: 18, spreadRadius: 2)],
                 ),
-                child: Column(
-                  children: [
-                    Text(
-                      'Your Character Is : ',
-                      style: const TextStyle(
-                        color: Color.fromRGBO(39, 246, 163, 1.0),
+                child: Center(
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            'Your Character Is : ',
+                            style: const TextStyle(
+                              color: Color.fromRGBO(39, 246, 163, 1.0),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            widget.value,
+                            style: const TextStyle(
+                              color: Color.fromRGBO(39, 246, 163, 1.0),
+                              fontSize: 30,
+                              fontFamily: 'PressStart2P',
+                            ),
+                          ),
+                          confettiWidget(),
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      widget.value,
-                      style: const TextStyle(
-                        color: Color.fromRGBO(39, 246, 163, 1.0),
-                        fontSize: 30,
-                        fontFamily: 'PressStart2P',
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -94,6 +115,22 @@ class _ResultScreenState extends State<ResultScreen> {
     return Text(
       'Not Correct? Report Here',
       style: TextStyle(color: Colors.grey),
+    );
+  }
+
+  Widget confettiWidget() {
+    return ConfettiWidget(
+      blastDirection: pi / 2,
+      confettiController: _confettiController,
+      blastDirectionality: BlastDirectionality.directional,
+      shouldLoop: false,
+      colors: const [
+        Colors.green,
+        Colors.blue,
+        Colors.pink,
+        Colors.orange,
+        Colors.purple,
+      ],
     );
   }
 }

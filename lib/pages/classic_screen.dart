@@ -3,6 +3,7 @@ import 'package:pixelarticons/pixel.dart';
 import 'package:pixelarticons/pixelarticons.dart';
 import 'package:whodat/pages/result_screen.dart';
 import 'package:whodat/services/gemini_api_service.dart';
+import 'package:typewritertext/typewritertext.dart';
 
 class ClassicScreen extends StatefulWidget {
   const ClassicScreen({super.key});
@@ -84,16 +85,29 @@ class _ClassicScreenState extends State<ClassicScreen> {
   }
 
   Widget questionCard() {
-    return Card(
-      color: Color.fromRGBO(39, 246, 163, 1.0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      elevation: 5,
-      margin: EdgeInsets.all(20),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Text(
-          '$question',
-          style: TextStyle(color: Color.fromRGBO(5, 39, 51, 1.0), fontSize: 30),
+    return SizedBox(
+      height: 200,
+
+      child: Card(
+        color: Color.fromRGBO(39, 246, 163, 1.0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 5,
+        margin: EdgeInsets.all(20),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          // child: Text(
+          //   '$question',
+          //   style: TextStyle(color: Color.fromRGBO(5, 39, 51, 1.0), fontSize: 30),
+          // ),
+          child: TypeWriter.text(
+            '$question',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color.fromRGBO(5, 39, 51, 1.0),
+              fontSize: 30,
+            ),
+            duration: const Duration(milliseconds: 50),
+          ),
         ),
       ),
     );
