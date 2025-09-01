@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:page_animation_transition/animations/fade_animation_transition.dart';
+import 'package:page_animation_transition/page_animation_transition.dart';
 import 'package:whodat/pages/classic_screen.dart';
 import 'package:whodat/pages/home_screen.dart';
 import 'package:whodat/pages/result_screen.dart';
@@ -22,13 +24,41 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Asimovian',
       ),
 
-      routes: {
-        'homepage': (context) => HomeScreen(),
-        'classic': (context) => ClassicScreen(),
-        'reverse': (context) => Container(),
-        'result': (context) => ResultScreen(value: 'value'),
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case 'homepage':
+            return PageAnimationTransition(
+              pageAnimationType: FadeAnimationTransition(),
+              page: HomeScreen(),
+            );
+          case 'classic':
+            return PageAnimationTransition(
+              pageAnimationType: FadeAnimationTransition(),
+              page: ClassicScreen(),
+            );
+          case 'reverse':
+            return PageAnimationTransition(
+              pageAnimationType: FadeAnimationTransition(),
+              page: Container(),
+            );
+          case 'result':
+            return PageAnimationTransition(
+              pageAnimationType: FadeAnimationTransition(),
+              page: ResultScreen(value: 'value'),
+            );
+          default:
+            return null;
+        }
       },
       initialRoute: 'homepage',
+
+      // routes: {
+      //   'homepage': (context) => HomeScreen(),
+      //   'classic': (context) => ClassicScreen(),
+      //   'reverse': (context) => Container(),
+      //   'result': (context) => ResultScreen(value: 'value'),
+      // },
+      // initialRoute: 'homepage',
     );
   }
 }
