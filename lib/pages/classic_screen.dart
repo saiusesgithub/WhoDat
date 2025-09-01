@@ -52,7 +52,7 @@ class _ClassicScreenState extends State<ClassicScreen> {
           ? Center(child: CircularProgressIndicator())
           : SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(25),
+                padding: const EdgeInsets.only(bottom: 20, top: 10),
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,11 +68,11 @@ class _ClassicScreenState extends State<ClassicScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [yesButton(), noButton()],
                           ),
-                          Row(
-                            spacing: 10,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [maybeButton(), idkButton()],
-                          ),
+                          // Row(
+                          //   spacing: 10,
+                          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          //   children: [maybeButton(), idkButton()],
+                          // ),
                         ],
                       ),
                     ],
@@ -105,7 +105,7 @@ class _ClassicScreenState extends State<ClassicScreen> {
         _answer('Yes');
       },
       style: ElevatedButton.styleFrom(
-        minimumSize: Size(200, 40),
+        // minimumSize: Size(200, 40),
         backgroundColor: Color.fromRGBO(39, 246, 163, 1.0),
         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -127,7 +127,7 @@ class _ClassicScreenState extends State<ClassicScreen> {
         _answer('No');
       },
       style: ElevatedButton.styleFrom(
-        minimumSize: Size(200, 40),
+        // minimumSize: Size(200, 40),
         backgroundColor: Color.fromRGBO(39, 246, 163, 1.0),
         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

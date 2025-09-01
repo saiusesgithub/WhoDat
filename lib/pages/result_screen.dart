@@ -12,52 +12,55 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        spacing: 25,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Center(
-            child: Container(
-              width: 500,
-              height: 200,
-              padding: const EdgeInsets.all(18),
-              decoration: BoxDecoration(
-                color: const Color(0xFF151820),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: Color.fromRGBO(39, 246, 163, 1.0),
-                  width: 2,
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          spacing: 25,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Center(
+              child: Container(
+                width: 500,
+                height: 200,
+                padding: const EdgeInsets.all(18),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF151820),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Color.fromRGBO(39, 246, 163, 1.0),
+                    width: 2,
+                  ),
+                  boxShadow: [BoxShadow(blurRadius: 18, spreadRadius: 2)],
                 ),
-                boxShadow: [BoxShadow(blurRadius: 18, spreadRadius: 2)],
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    'Your Character Is : ',
-                    style: const TextStyle(
-                      color: Color.fromRGBO(39, 246, 163, 1.0),
+                child: Column(
+                  children: [
+                    Text(
+                      'Your Character Is : ',
+                      style: const TextStyle(
+                        color: Color.fromRGBO(39, 246, 163, 1.0),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    widget.value,
-                    style: const TextStyle(
-                      color: Color.fromRGBO(39, 246, 163, 1.0),
-                      fontSize: 30,
-                      fontFamily: 'PressStart2P',
+                    const SizedBox(height: 6),
+                    Text(
+                      widget.value,
+                      style: const TextStyle(
+                        color: Color.fromRGBO(39, 246, 163, 1.0),
+                        fontSize: 30,
+                        fontFamily: 'PressStart2P',
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Column(
-            spacing: 10,
-            children: [notCorrectReportButton(), returnToHomeButton()],
-          ),
-        ],
+            Column(
+              spacing: 10,
+              children: [notCorrectReportButton(), returnToHomeButton()],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -65,7 +68,8 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget returnToHomeButton() {
     return ElevatedButton(
       onPressed: () {
-        Navigator.pushNamed(context, 'homepage');
+        // Navigator.pushNamed(context, 'homepage');
+        Navigator.of(context).popUntil(ModalRoute.withName('homepage'));
       },
       style: ElevatedButton.styleFrom(
         minimumSize: Size(325, 60),

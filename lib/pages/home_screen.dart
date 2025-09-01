@@ -13,17 +13,21 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Center(
         child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(spacing: 15, children: [title(), subtitle()]),
-              Column(
-                spacing: 25,
-                children: [classicModeButton(), reverseModeButton()],
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(spacing: 15, children: [title(), subtitle()]),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 25,
+                  children: [classicModeButton(), reverseModeButton()],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -44,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget subtitle() {
     return Text(
       'Outsmart the AI… or be outguessed.',
+      textAlign: TextAlign.center,
       style: TextStyle(
         fontFamily: 'PressStart2P',
         color: Color.fromRGBO(39, 246, 163, 1.0),
