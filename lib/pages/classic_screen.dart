@@ -5,6 +5,7 @@ import 'package:whodat/pages/result_screen.dart';
 import 'package:whodat/services/gemini_api_service.dart';
 import 'package:typewritertext/typewritertext.dart';
 import 'package:flutter_soloud/flutter_soloud.dart';
+import 'package:animated_transitions/animated_transitions.dart';
 
 class ClassicScreen extends StatefulWidget {
   const ClassicScreen({super.key});
@@ -217,10 +218,17 @@ class _ClassicScreenState extends State<ClassicScreen> {
           !_navigated &&
           mounted) {
         _navigated = true;
-        Navigator.push(
-          context,
-          MaterialPageRoute(
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => ResultScreen(value: finalGuess!),
+        //   ),
+        // );
+
+        Navigator.of(context).push(
+          TransitionPageRoute(
             builder: (context) => ResultScreen(value: finalGuess!),
+            transitionAnimation: CrtShutoffTransition(),
           ),
         );
       }

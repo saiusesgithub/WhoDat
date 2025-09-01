@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:typewritertext/typewritertext.dart';
 import 'package:flutter_soloud/flutter_soloud.dart';
+import 'package:animated_transitions/animated_transitions.dart';
+import 'package:whodat/pages/classic_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -70,7 +72,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget classicModeButton() {
     return ElevatedButton(
       onPressed: () {
-        Navigator.pushNamed(context, 'classic');
+        // Navigator.pushNamed(context, 'classic');
+
+        Navigator.of(context).push(
+          TransitionPageRoute(
+            builder: (context) => const ClassicScreen(),
+            transitionAnimation: CrtShutoffTransition(),
+          ),
+        );
       },
       style: ElevatedButton.styleFrom(
         minimumSize: Size(325, 60),
