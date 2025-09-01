@@ -4,6 +4,7 @@ import 'package:pixelarticons/pixelarticons.dart';
 import 'package:whodat/pages/result_screen.dart';
 import 'package:whodat/services/gemini_api_service.dart';
 import 'package:typewritertext/typewritertext.dart';
+import 'package:flutter_soloud/flutter_soloud.dart';
 
 class ClassicScreen extends StatefulWidget {
   const ClassicScreen({super.key});
@@ -13,6 +14,7 @@ class ClassicScreen extends StatefulWidget {
 }
 
 class _ClassicScreenState extends State<ClassicScreen> {
+  final SoLoud _soloud = SoLoud.instance;
   bool? loading = false;
   bool _navigated = false;
   GeminiApi? api;
@@ -116,6 +118,7 @@ class _ClassicScreenState extends State<ClassicScreen> {
   Widget yesButton() {
     return ElevatedButton(
       onPressed: () {
+        buttonSound();
         _answer('Yes');
       },
       style: ElevatedButton.styleFrom(
@@ -138,6 +141,7 @@ class _ClassicScreenState extends State<ClassicScreen> {
   Widget noButton() {
     return ElevatedButton(
       onPressed: () {
+        buttonSound();
         _answer('No');
       },
       style: ElevatedButton.styleFrom(
@@ -237,5 +241,12 @@ class _ClassicScreenState extends State<ClassicScreen> {
     // record the last question + answer
     history.add({'q': question ?? 'Unknown', 'a': a});
     await getQuestion();
+  }
+
+  void buttonSound() async {
+    await _soloud.init();
+    final source = await _soloud.loadAsset('assets/sound/button_sound.mp3');
+    final handle = await _soloud.play(source);
+    _soloud.setVolume(handle, 1.0);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:typewritertext/typewritertext.dart';
+import 'package:flutter_soloud/flutter_soloud.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,6 +10,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final SoLoud _soloud = SoLoud.instance;
+  @override
+  void initState() {
+    super.initState();
+    themeSong();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,5 +113,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  void themeSong() async {
+    await _soloud.init();
+    final source = await _soloud.loadAsset('assets/sound/startup_sound.mp3');
+    final handle = await _soloud.play(source);
+    _soloud.setVolume(handle, 1.0);
   }
 }
