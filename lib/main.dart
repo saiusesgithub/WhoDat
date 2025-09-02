@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_animation_transition/animations/fade_animation_transition.dart';
 import 'package:page_animation_transition/page_animation_transition.dart';
-import 'package:whodat/pages/classic_screen.dart';
 import 'package:whodat/pages/home_screen.dart';
-import 'package:whodat/pages/result_screen.dart';
-
 void main() {
   runApp(const MyApp());
 }

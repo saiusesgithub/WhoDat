@@ -215,6 +215,7 @@ class _ClassicScreenState extends State<ClassicScreen> {
         status = json['status'] ?? 'ongoing';
       });
       if (status == 'final' &&
+          finalGuess != null &&
           finalGuess!.isNotEmpty &&
           !_navigated &&
           mounted) {
@@ -235,7 +236,6 @@ class _ClassicScreenState extends State<ClassicScreen> {
         );
       }
     } catch (e) {
-      print(e);
       // fallback
       setState(() {
         question = 'Is your character alive?';
@@ -248,8 +248,19 @@ class _ClassicScreenState extends State<ClassicScreen> {
 
   Future<void> _answer(String a) async {
     if (status == 'final') return;
+    // trae helped with this
+    // Set loading state before recording answer
+    setState(() {
+      loading = true;
+    }); 
     // record the last question + answer
     history.add({'q': question ?? 'Unknown', 'a': a});
+    // trae helped with this
+    // Clear current question to show loading state
+    setState(() {
+      question = null;
+    });
+    // Get next question
     await getQuestion(category);
   }
 
